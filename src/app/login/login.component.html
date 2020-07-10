@@ -1,0 +1,37 @@
+<div>
+<img src="../../assets/festive-illustration-man-with-thumb-up-login-page_91152-12.jpg" width="335" height="335" alt="">
+</div>
+<mat-card>
+  <span class="material-icons">
+    person
+    </span>
+    <mat-card-title>Login</mat-card-title>
+<mat-card-content>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Username" formControlName="username">
+      <mat-error *ngIf="(form.controls['username'].touched || submitted) && form.controls['username'].errors?.required">Username is required</mat-error>
+      <mat-error *ngIf="form.controls['username'].touched && form.controls['username'].errors?.userExist"> User do not exist, Please click register to proceed.</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password">
+      <mat-error *ngIf="(form.controls['password'].touched || submitted) && form.controls['password'].errors?.required">Password is required</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p *ngIf="errorMessage.length>0">
+      <mat-error> {{errorMessage}} </mat-error>
+  </p>
+
+  <div class="button">
+    <button type="submit" mat-button [disabled]="!form.valid">Login</button>
+    <button (click)="onRegister()" mat-button>Register</button>
+  </div>
+
+</form>
+</mat-card-content>
+</mat-card>
