@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Validators, AbstractControl, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DataService } from "../data.service";
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: "app-login",
@@ -13,6 +14,8 @@ export class LoginComponent implements OnInit {
   passwords: Array<any> = [];
   message: string;
   errorMessage: string = "";
+  encryptSecretKey: string = "12345QAZwsxedcEDCRFV!@#$%7890";
+  dbPassword:string;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -56,10 +59,14 @@ export class LoginComponent implements OnInit {
       this.passwords = JSON.parse(localStorage.getItem("passwords"));
       let usernameIndex = this.usernames.indexOf(this.form.value.username);
       let dbUsername = this.usernames[usernameIndex];
-      let dbPassword = this.passwords[usernameIndex];
+      this.dbPassword = this.passwords[usernameIndex];
+      const bytes = CryptoJS.AES.decrypt(this.dbPassword, this.encryptSecretKey);
+      if (bytes.toString()) {
+        this.dbPassword = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
       if (
         this.form.value.username == dbUsername &&
-        this.form.value.password == dbPassword
+        this.form.value.password == this.dbPassword
       ) {
         this.data.sendMessageToUser(dbUsername);
         this.router.navigate(["user"]);
