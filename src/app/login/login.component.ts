@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Validators, AbstractControl, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DataService } from "../data.service";
-import * as CryptoJS from 'crypto-js';
+import * as CryptoJS from "crypto-js";
 
 @Component({
   selector: "app-login",
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   message: string;
   errorMessage: string = "";
   encryptSecretKey: string = "12345QAZwsxedcEDCRFV!@#$%7890";
-  dbPassword:string;
+  dbPassword: string;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -60,7 +60,10 @@ export class LoginComponent implements OnInit {
       let usernameIndex = this.usernames.indexOf(this.form.value.username);
       let dbUsername = this.usernames[usernameIndex];
       this.dbPassword = this.passwords[usernameIndex];
-      const bytes = CryptoJS.AES.decrypt(this.dbPassword, this.encryptSecretKey);
+      const bytes = CryptoJS.AES.decrypt(
+        this.dbPassword,
+        this.encryptSecretKey
+      );
       if (bytes.toString()) {
         this.dbPassword = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
       }

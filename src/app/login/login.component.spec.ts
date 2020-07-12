@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { LoginComponent } from './login.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DataService } from '../data.service';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { LoginComponent } from "./login.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { DataService } from "../data.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import {
@@ -11,7 +11,7 @@ import {
   MatButtonModule,
 } from "@angular/material";
 
-describe('LoginComponent', () => {
+describe("LoginComponent", () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
@@ -23,12 +23,11 @@ describe('LoginComponent', () => {
         MatInputModule,
         MatButtonModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
       ],
       providers: [DataService],
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
+      declarations: [LoginComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -37,7 +36,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

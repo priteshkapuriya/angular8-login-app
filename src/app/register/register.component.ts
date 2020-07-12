@@ -8,7 +8,7 @@ import {
 import { AbstractControl, Validators, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DataService } from "../data.service";
-import * as CryptoJS from 'crypto-js';
+import * as CryptoJS from "crypto-js";
 
 @Component({
   selector: "app-register",
@@ -116,7 +116,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       if (this.passwords == null || undefined) {
         this.passwords = [];
       }
-      const encryptPwd = CryptoJS.AES.encrypt(JSON.stringify(this.registerForm.value.password), this.encryptSecretKey).toString();
+      const encryptPwd = CryptoJS.AES.encrypt(
+        JSON.stringify(this.registerForm.value.password),
+        this.encryptSecretKey
+      ).toString();
       this.usernames.push(this.registerForm.value.username);
       this.passwords.push(encryptPwd);
       localStorage.setItem("usernames", JSON.stringify(this.usernames));

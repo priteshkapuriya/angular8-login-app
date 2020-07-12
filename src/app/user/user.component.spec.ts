@@ -1,21 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { UserComponent } from './user.component';
-import { DataService } from '../data.service';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { UserComponent } from "./user.component";
+import { DataService } from "../data.service";
 
-describe('UserComponent', () => {
+describe("UserComponent", () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [RouterTestingModule],
       providers: [DataService],
-      declarations: [ UserComponent ]
-    })
-    .compileComponents();
+      declarations: [UserComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -24,7 +21,7 @@ describe('UserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
